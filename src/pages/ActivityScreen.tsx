@@ -15,8 +15,12 @@ interface Card {
 
 function ActivityScreen() {
   const navigate = useNavigate();
-  const [leftSideCardsData, setleftSideCardsData] = useState<Card[]>(cardsData.leftSideCardsData);
-  const [rightSideCardsData, setrightSideCardsData] = useState<Card[]>(cardsData.rightSideCardsData);
+  const [leftSideCardsData, setleftSideCardsData] = useState<Card[]>(
+    cardsData.leftSideCardsData
+  );
+  const [rightSideCardsData, setrightSideCardsData] = useState<Card[]>(
+    cardsData.rightSideCardsData
+  );
   const [popOverActive, setpopOverActive] = useState("");
   const [popOverRestart, setpopOverRestart] = useState("");
   const [leftRightSelected, setleftRightSelected] = useState({
@@ -126,6 +130,9 @@ function ActivityScreen() {
         if (prev === 11) {
           if (openedLeftCard?.title !== openedRightCard.matchWith) {
             setpopOverRestart("active");
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
           }
           return prev + 1;
         } else {
@@ -143,6 +150,9 @@ function ActivityScreen() {
   const handleClick = (card: Card, side: string) => {
     if (matches >= 12) {
       setpopOverRestart("active");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
       return;
     }
     console.log(card, "card");
@@ -296,7 +306,15 @@ function ActivityScreen() {
           </div>
         </div>
       )}
-      <BackButton handleClickBackButton={handleClickBackButton} />
+      {/* <BackButton handleClickBackButton={handleClickBackButton} /> */}
+      <button
+        type="button"
+        className="button-goback"
+        title="Go to back"
+        onClick={handleClickBackButton}
+      >
+        <img src="images/button-back.png" alt="back button" />
+      </button>
       <div className="matches-container">
         <div>
           <div>Matches : {matches}</div>
@@ -471,10 +489,22 @@ function ActivityScreen() {
                 </div>
               </div>
               {checkAllMatched() && (
-                <NextButton
-                  handleClickNextButton={handleClickNextButton}
-                  buttonText={"NEXT"}
-                />
+                // <NextButton
+                //   handleClickNextButton={handleClickNextButton}
+                //   buttonText={"NEXT"}
+                // />
+                <button
+                  type="button"
+                  className="button-image"
+                  onClick={handleClickNextButton}
+                  style={{
+                    position: "absolute",
+                    bottom: "-50px",
+                    right: "-500px",
+                  }}
+                >
+                  <img src="images/button-next.png" alt="next button" />
+                </button>
               )}
             </div>
           )}
@@ -501,12 +531,26 @@ function ActivityScreen() {
                   <img src="images/monkey_final.png" alt="" />
                 </div>
                 <div className="final-box-button">
-                  <button
+                  {/* <button
                     onClick={() => {
                       window.location.reload();
                     }}
                   >
                     YAY, OK!
+                  </button> */}
+                  <button
+                    type="button"
+                    className="button-image"
+                    onClick={()=>{
+                        window.location.reload();
+                    }}
+                    style={{
+                    //   position: "absolute",
+                    //   bottom: "-50px",
+                    //   right: "-500px",
+                    }}
+                  >
+                    <img src="images/button-play.png" alt="next button" />
                   </button>
                 </div>
               </div>
@@ -543,13 +587,20 @@ function ActivityScreen() {
               <h6>Game Over!</h6>
             </div>
             <div className="final-box-button-reset">
-              <button
+              {/* <button
                 onClick={() => {
                   window.location.reload();
                 }}
               >
                 RESTART
-              </button>
+              </button> */}
+              {/* <button
+                type="button"
+                className="button-image mt-2"
+                onClick={handleClickNextButton}
+              >
+                <img src="images/button-play.png" alt="next button" />
+              </button> */}
             </div>
           </div>
         </div>

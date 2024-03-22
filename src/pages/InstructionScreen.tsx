@@ -15,7 +15,15 @@ function InstructionScreen() {
   };
   return (
     <div className="main-wrapper instruction-container">
-      <BackButton handleClickBackButton={handleClickBackButton} />
+      {/* <BackButton handleClickBackButton={handleClickBackButton} /> */}
+      <button
+        type="button"
+        className="button-goback"
+        title="Go to back"
+        onClick={handleClickBackButton}
+      >
+        <img src="images/button-back.png" alt="back button" />
+      </button>
       <div className="progress-wrapper disabled">
         <div
           className="banana-progress"
@@ -36,7 +44,7 @@ function InstructionScreen() {
           alt="banana"
         />
       </div>
-      <div className="cards-container">
+      <div className="cards-container" style={{marginTop:"-20px"}}>
         <img src="images/curve.png" className="image-curve" alt="" />
         <div className="card card-1">
           <div className="card-header">
@@ -107,10 +115,13 @@ function InstructionScreen() {
           </div>
         </div>
       </div>
-      <NextButton
+      {/* <NextButton
         handleClickNextButton={handleClickNextButton}
         buttonText={"PLAY"}
-      />
+      /> */}
+      <button type="button" className="button-image mt-2" onClick={handleClickNextButton}>
+        <img src="images/button-play.png" alt="next button" />
+      </button>
     </div>
   );
 }

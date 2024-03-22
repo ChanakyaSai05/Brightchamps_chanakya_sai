@@ -62,7 +62,16 @@ function Home() {
     <>
       <div className="main-wrapper">
         {introSteps.step !== 1 && (
-          <BackButton handleClickBackButton={handleClickBackButton} />
+          // <BackButton handleClickBackButton={handleClickBackButton} />
+
+          <button
+            type="button"
+            className="button-goback"
+            title="Go to back"
+            onClick={handleClickBackButton}
+          >
+            <img src="images/button-back.png" alt="back button" />
+          </button>
         )}
         {introSteps.step === 3 && (
           <div className="progress-wrapper disabled">
@@ -139,13 +148,35 @@ function Home() {
           <img className="big-ellipse2" src="images/big-ellipse.png" alt="" />
         </div>
 
-        <NextButton
+        {/* <NextButton
           handleClickNextButton={handleClickNextButton}
           buttonText={getCurrStepDetails().buttonText}
-        />
+        /> */}
+        {introSteps.step === 1 && (
+          <button type="button" className="button-image" onClick={handleClickNextButton}>
+            <img src="images/button-start.png" alt="start button" />
+          </button>
+        )}
+        {introSteps.step === 2 && (
+          <button
+            type="button"
+            className="button-image"
+            onClick={handleClickNextButton}
+          >
+            <img src="images/button-next.png" alt="next button" />
+          </button>
+        )}
+
+        {introSteps.step === 3 && (
+          <button
+            type="button"
+            className="button-image"
+            onClick={handleClickNextButton}
+          >
+            <img src="images/button-yes.png" alt="yes button" />
+          </button>
+        )}
       </div>
-
-
     </>
   );
 }
